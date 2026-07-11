@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg: #1b1a18;
+    --paper: #ece6d6;
+    --red: #7a1620;
+    --stamp: #6a6259;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: var(--bg);
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Special Elite", "Courier New", monospace;
+  }
+
+  a {
+    position: relative;
+    display: inline-block;
+    background: var(--paper);
+    color: #23201c;
+    text-decoration: none;
+    padding: 22px 30px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.55);
+    transform: rotate(-1.5deg);
+  }
+
+  a::before {
+    content: "";
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #b23347, var(--red) 70%);
+    box-shadow: 0 3px 4px rgba(0,0,0,0.6);
+  }
+
+  .case-no {
+    display: block;
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--stamp);
+    letter-spacing: 3px;
+    text-align: center;
+  }
+
+</style>
+</head>
+<body>
+
+<a href="tableau.html">OUVRIR LE DOSSIER<span class="case-no">29/06</span></a>
+
+</body>
+</html>
