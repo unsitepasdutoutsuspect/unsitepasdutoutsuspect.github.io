@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tableau — Affaire N.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Just+Another+Hand&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg: #1b1a18;
+    --paper: #ece6d6;
+    --paper-shadow: rgba(0,0,0,0.55);
+    --ink: #23201c;
+    --red: #7a1620;
+    --tape: rgba(214, 198, 163, 0.55);
+    --stamp: #4d564f;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Special Elite", "Courier New", monospace;
+  }
+
+  body {
+    background-image:
+      radial-gradient(circle at 20% 15%, rgba(255,255,255,0.03), transparent 40%),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px);
+  }
+
+  .lamp {
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 500px;
+    background: radial-gradient(ellipse at center, rgba(255, 235, 200, 0.05), transparent 65%);
+    pointer-events: none;
+    animation: flicker 7s ease-in-out infinite;
+    z-index: 0;
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    48% { opacity: 1; }
+    50% { opacity: 0.85; }
+    52% { opacity: 1; }
+    76% { opacity: 0.92; }
+    78% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lamp { animation: none; }
+  }
+
+  .board-header {
+    position: relative;
+    z-index: 5;
+    padding: 22px 24px 4px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #a9a29a;
+  }
+
+  .board-header .case-no {
+    color: var(--red);
+    margin-left: 10px;
+  }
+
+  .board {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 0 0 80px;
+  }
+
+  /* --- Mobile-first: simple stacked flow --- */
+  .pin-item {
+    position: relative;
+    display: block;
+    width: min(92%, 380px);
+    margin: 26px auto;
+  }
+
+  .card {
+    background: var(--paper);
+    padding: 16px 18px;
+    box-shadow: 0 10px 24px var(--paper-shadow);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .card-label {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: var(--stamp);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    padding-bottom: 6px;
+  }
+
+  .card ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  .card li {
+    margin-bottom: 4px;
+  }
+
+  .card p {
+    margin: 0;
+  }
+
+  .photo-cluster img {
+    display: block;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 10px 24px var(--paper-shadow);
+  }
+
+  .note-sang {
+    background: var(--paper);
+    padding: 26px 22px 30px;
+    box-shadow: 0 12px 28px var(--paper-shadow);
+    clip-path: polygon(0% 3%, 8% 0%, 40% 2%, 63% 0%, 100% 4%, 97% 40%, 100% 78%, 92% 100%, 55% 97%, 22% 100%, 3% 96%, 6% 60%);
+  }
+
+  .blood-text {
+    font-family: "Just Another Hand", cursive;
+    font-size: 34px;
+    color: var(--red);
+    line-height: 1.15;
+    text-shadow: 0 1px 0 rgba(122,22,32,0.25);
+  }
+
+  .note-caption {
+    display: block;
+    margin-top: 10px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--stamp);
+  }
+
+  .pin {
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #b23347, var(--red) 70%);
+    box-shadow: 0 3px 4px rgba(0,0,0,0.6);
+    z-index: 3;
+  }
+
+  .tape {
+    position: absolute;
+    width: 70px;
+    height: 24px;
+    background: var(--tape);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    z-index: 3;
+  }
+
+  .threads { display: none; }
+
+  .rotate-1 { transform: rotate(-2deg); }
+  .rotate-2 { transform: rotate(1.5deg); }
+  .rotate-3 { transform: rotate(-3.5deg); }
+  .rotate-4 { transform: rotate(2.5deg); }
+
+  /* --- Desktop: freeform board with absolute pins --- */
+  @media (min-width: 900px) {
+
+    .board {
+      max-width: 1400px;
+      margin: 0 auto;
+      height: 1360px;
+    }
+
+    .pin-item {
+      position: absolute;
+      width: auto;
+      margin: 0;
+    }
+
+    .threads {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: visible;
+    }
+
+    .threads path {
+      fill: none;
+      stroke: var(--red);
+      stroke-width: 1.4;
+      opacity: 0.55;
+    }
+
+    .photo-cluster { top: 30px; left: 430px; width: 560px; }
+    .photo-cluster .tape { top: -10px; left: 40px; }
+
+    .card-inventaire { top: 250px; left: 90px; width: 240px; }
+    .card-salledebain { top: 210px; left: 900px; width: 230px; }
+    .card-labo { top: 560px; left: 120px; width: 220px; }
+    .card-autopsie { top: 590px; left: 940px; width: 200px; }
+    .note-sang { top: 470px; left: 500px; width: 300px; }
+    .card-delai { top: 800px; left: 900px; width: 210px; }
+    .card-conclusion { top: 830px; left: 460px; width: 350px; }
+
+  }
+
+</style>
+</head>
+<body>
+
+<div class="lamp"></div>
+
+<div class="board-header">TABLEAU — AFFAIRE N.<span class="case-no">29/06</span></div>
+
+<div class="board">
+
+  <svg class="threads" viewBox="0 0 1400 1360" preserveAspectRatio="none">
+    <path d="M 1020 380 C 900 420, 780 440, 650 490" />
+    <path d="M 650 560 C 600 600, 550 630, 560 640" />
+    <path d="M 330 500 C 300 560, 260 620, 230 660" />
+  </svg>
+
+  <div class="pin-item photo-cluster">
+    <span class="tape"></span>
+    <img src="assets/preuves-trajet.jpg" alt="">
+  </div>
+
+  <div class="pin-item card card-inventaire rotate-1">
+    <span class="pin"></span>
+    <p class="card-label">SALON — INVENTAIRE</p>
+    <ul>
+      <li>Verres : fond de liquide non fini. Tous.</li>
+      <li>Fenêtres verrouillées de l'intérieur.</li>
+    </ul>
+  </div>
+
+  <div class="pin-item card card-salledebain rotate-2">
+    <span class="pin"></span>
+    <p class="card-label">SALLE DE BAIN</p>
+    <ul>
+      <li>Corps. Un homme.</li>
+      <li>Renfoncement sous la baignoire — dimensions d'une tablette. Vide.</li>
+    </ul>
+  </div>
+
+  <div class="pin-item note-sang rotate-3">
+    <span class="pin"></span>
+    <p class="blood-text">48.43886832931111,<br>2.030699606222631</p>
+    <span class="note-caption">main droite — écrit au sang</span>
+  </div>
+
+  <div class="pin-item card card-labo rotate-4">
+    <span class="pin"></span>
+    <p class="card-label">LABO</p>
+    <p>Résidu dans les verres : substance toxique, non alimentaire, soluble.</p>
+  </div>
+
+  <div class="pin-item card card-autopsie rotate-1">
+    <span class="pin"></span>
+    <p class="card-label">AUTOPSIE</p>
+    <p>Arme à feu. 29/06 — 06:00.</p>
+  </div>
+
+  <div class="pin-item card card-delai rotate-2">
+    <span class="pin"></span>
+    <p class="card-label">APPEL</p>
+    <p>Réponse annoncée : 10 min.<br>Délai réel : 8h.</p>
+  </div>
+
+  <div class="pin-item card card-conclusion rotate-3">
+    <span class="pin"></span>
+    <p class="card-label">NOTE</p>
+    <p>Les invités n'ont pas quitté l'appartement de leur plein gré.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
