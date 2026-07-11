@@ -65,3 +65,13 @@ td, th {
   border: 1px solid black;
   padding: 4px 8px;
 }
+
+.censure {
+  background-color: #000000;
+  color: #000000;
+  user-select: none;
+}
+
+.censure:hover {
+  color: #000000;
+}
