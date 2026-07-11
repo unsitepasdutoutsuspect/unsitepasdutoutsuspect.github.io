@@ -1,0 +1,77 @@
+body {
+  font-family: "Times New Roman", Times, serif;
+  background-color: #ffffff;
+  color: #000000;
+  margin: 30px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+h1 {
+  font-size: 26px;
+  text-decoration: underline;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+a {
+  color: blue;
+}
+
+a:visited {
+  color: purple;
+}
+
+nav {
+  border: 1px solid #000000;
+  padding: 6px;
+  margin-bottom: 20px;
+  background-color: #eeeeee;
+}
+
+nav a {
+  margin-right: 10px;
+}
+
+.tampon {
+  border: 2px solid red;
+  color: red;
+  font-weight: bold;
+  padding: 4px 8px;
+  display: inline-block;
+  transform: rotate(-3deg);
+  margin: 10px 0;
+}
+
+footer {
+  margin-top: 40px;
+  font-size: 12px;
+  border-top: 1px solid #000000;
+  padding-top: 6px;
+}
+
+.centre {
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+td, th {
+  border: 1px solid black;
+  padding: 4px 8px;
+}
+
+.censure {
+  background-color: #000000;
+  color: #000000;
+  user-select: none;
+}
+
+.censure:hover {
+  color: #000000;
+}
